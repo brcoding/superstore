@@ -131,4 +131,4 @@ curl -L -H "Content-Type: application/json" -X DELETE "http://d2ldv12x4osxdk.clo
 
 https://s3.amazonaws.com/superstorewebsite/index.html
 
-NOTE: that this swagger UI has a few issues so does the swagger.json that need to be improved before it is fully funcitonal.
+NOTE: that this swagger UI has a few issues so does the swagger.json that need to be improved before it is fully funcitonal. When in doubt... Use curl.

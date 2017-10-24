@@ -20,18 +20,18 @@ High Availability for the API Gateway is achieved through the use of Cloudfront 
 
 Follow this handy guide to install serverless: http://docs.aws.amazon.com/cli/latest/userguide/installing.html
 
-* Log in to AWS
-* Import superstore-prod-swagger-apigateway.json in to API gateway for each region
-* Update the serverless.yml with the region you wish to push to and update the origin section to match the API Gateway origins you setup in the previous step.
-* Update the swagger.json location in the s3/index.html file.
-* Upload the contents of the S3 folder to your primary region with replication turned on to at least one other region.
+1. Log in to AWS
+2. Import superstore-prod-swagger-apigateway.json in to API gateway for each region
+3. Update the serverless.yml with the region you wish to push to and update the origin section to match the API Gateway origins you setup in the previous step.
+4. Update the swagger.json location in the s3/index.html file.
+5. Upload the contents of the S3 folder to your primary region with replication turned on to at least one other region.
 
 # Usage
 
 ## Account Creation
 
-Resource: /account
-Method: POST
+### Resource: /account
+### Method: POST
 
 Input Body Sample:
 ```
@@ -48,8 +48,8 @@ curl -L -H "Content-Type: application/json" -X POST -d "{\"customer_id\":\"TESTC
 ---
 ## Create Key Value Item
 
-Resource: /items
-Method: POST
+### Resource: /items
+### Method: POST
 
 Input Body Sample:
 ```
@@ -68,13 +68,13 @@ curl -L -H "Content-Type: application/json" -X POST -d "{\"customer_id\":\"TESTC
 ---
 ## Get Key Value Item
 
-Resource: /items
-Method: GET
+### Resource: /items
+### Method: GET
 
-Query String Parameters:
+### Query String Parameters:
 
-customer_id: string
-key: string
+#### customer_id: string
+#### key: string
 
 Example Curl Call:
 
@@ -91,12 +91,12 @@ Expected Output:
 ---
 ## Get All Key Value Item
 
-Resource: /items/list
-Method: GET
+### Resource: /items/list
+### Method: GET
 
-Query String Parameters:
+### Query String Parameters:
 
-customer_id: string
+#### customer_id: string
 
 Example Curl Call:
 
@@ -113,13 +113,13 @@ Expected Output:
 ---
 ## Delete Key Value Item
 
-Resource: /items
-Method: DELETE
+### Resource: /items
+### Method: DELETE
 
-Query String Parameters:
+### Query String Parameters:
 
-customer_id: string
-key: string
+#### customer_id: string
+#### key: string
 
 Example Curl Call:
 

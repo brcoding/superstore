@@ -8,7 +8,7 @@ SuperStore is a simple application that runs entirely on AWS offering a multi-re
 * The API itself is very rushed and there are some issues:
   - /items/ should have an /items/ GET which returns a full list and /items/{KEY} as a path variable. This a quick resource was added for /items/list to get a full list of items and query strings were used instead baffling the author.
   - The /account/ API resource does not provide any authorization and allows anyone to create a table in DynamoDB. 
-  - The DynamoDB implementation has a limit of 256 accounts because each account is tied to a new table. In a more realistic implementation the organization accounts under consolidated billing would be used instead for each customer giving better billing and a specific account for each dynamoDB. My account was not allowed create sub accounts so a table per customer was used instead. This is not ideal.
+  - The DynamoDB implementation has a limit of 256 accounts because each account is tied to a new table. In a more realistic implementation the organization accounts under consolidated billing would be used instead for each customer giving better billing and a specific account for each dynamoDB. My account was not allowed to create sub accounts so a table per customer was used instead. This is not ideal.
   - The /items/ resource has no authorization, It should accept either an API key or specific IAM permissions.
 * The distribution is done with serverless but the serverless.yml needs a bit more work and testing, the major
   sections are there to show proof of concept but it only mostly works.

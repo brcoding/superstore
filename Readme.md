@@ -34,9 +34,9 @@ Resource: /account
 Method: POST
 
 Input Body Sample:
-```{
+`{
   "customer_id": "TESTCUSTOMERKEY"
-}```
+}`
 
 Example Curl Call:
 
@@ -48,11 +48,11 @@ Resource: /items
 Method: POST
 
 Input Body Sample:
-```{
+`{
   "customer_id": "TESTCUSTOMERKEY"
   "key": "some key"
   "value": some string value"
-}```
+}`
 
 Example Curl Call:
 
@@ -74,7 +74,7 @@ Example Curl Call:
 
 Expected Output:
 
-```{"Item": {"id": "some key", "value": "some string value"}, "ResponseMetadata": {"RetryAttempts": 0, "HTTPStatusCode": 200, "RequestId": "GA64A1PS2S512HNI1H42AMEONBVV4KQNSO5AEMVJF66Q9ASUAAJG", "HTTPHeaders": {"x-amzn-requestid": "GA64A1PS2S512HNI1H42AMEONBVV4KQNSO5AEMVJF66Q9ASUAAJG", "content-length": "66", "server": "Server", "connection": "keep-alive", "x-amz-crc32": "2054443726", "date": "Tue, 24 Oct 2017 15:54:29 GMT", "content-type": "application/x-amz-json-1.0"}}}```
+`{"Item": {"id": "some key", "value": "some string value"}, "ResponseMetadata": {"RetryAttempts": 0, "HTTPStatusCode": 200, "RequestId": "GA64A1PS2S512HNI1H42AMEONBVV4KQNSO5AEMVJF66Q9ASUAAJG", "HTTPHeaders": {"x-amzn-requestid": "GA64A1PS2S512HNI1H42AMEONBVV4KQNSO5AEMVJF66Q9ASUAAJG", "content-length": "66", "server": "Server", "connection": "keep-alive", "x-amz-crc32": "2054443726", "date": "Tue, 24 Oct 2017 15:54:29 GMT", "content-type": "application/x-amz-json-1.0"}}}`
 ---
 ## Get All Key Value Item
 
@@ -91,7 +91,7 @@ Example Curl Call:
 
 Expected Output:
 
-```{"Count": 1, "Items": [{"id": "some key", "value": "some string value"}], "ScannedCount": 1, "ResponseMetadata": {"RetryAttempts": 0, "HTTPStatusCode": 200, "RequestId": "J3O9DQRSRK3FRBQ8FTRG4AT1A3VV4KQNSO5AEMVJF66Q9ASUAAJG", "HTTPHeaders": {"x-amzn-requestid": "J3O9DQRSRK3FRBQ8FTRG4AT1A3VV4KQNSO5AEMVJF66Q9ASUAAJG", "content-length": "96", "server": "Server", "connection": "keep-alive", "x-amz-crc32": "2657371979", "date": "Tue, 24 Oct 2017 15:56:18 GMT", "content-type": "application/x-amz-json-1.0"}}}```
+`{"Count": 1, "Items": [{"id": "some key", "value": "some string value"}], "ScannedCount": 1, "ResponseMetadata": {"RetryAttempts": 0, "HTTPStatusCode": 200, "RequestId": "J3O9DQRSRK3FRBQ8FTRG4AT1A3VV4KQNSO5AEMVJF66Q9ASUAAJG", "HTTPHeaders": {"x-amzn-requestid": "J3O9DQRSRK3FRBQ8FTRG4AT1A3VV4KQNSO5AEMVJF66Q9ASUAAJG", "content-length": "96", "server": "Server", "connection": "keep-alive", "x-amz-crc32": "2657371979", "date": "Tue, 24 Oct 2017 15:56:18 GMT", "content-type": "application/x-amz-json-1.0"}}}`
 ---
 ## Delete Key Value Item
 

@@ -1,0 +1,109 @@
+# serverless.yml
+
+service: superstore
+
+provider:
+  name: aws
+  stage: prod
+  region: us-west-1
+  role: arn:aws:iam::350345633163:role/SuperstoreLambda
+
+resources:
+  Resources:
+    customer_table:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: customer_table
+        AttributeDefinitions:
+          - AttributeName: customer_id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: customer_id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+
+  # TODO: Static S3 bucket to hold the swagger UI, needs a cloudfront for distrib / balancing.
+  S3StaticSite:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: superstorewebsite
+
+    ## Specifying the CloudFront Distribution to server your Web Application
+    WebAppCloudFrontDistribution:
+      Type: AWS::CloudFront::Distribution
+      Properties:
+        DistributionConfig:
+          # Each origin points to an API gateway, this is how you get HA (at twice the price) for API gateway.
+          Origins:
+            - DomainName: 7g06jqd3uf.execute-api.us-east-1.amazonaws.com/prod
+              Id: superstoreeast
+              CustomOriginConfig:
+                HTTPPort: 80
+                HTTPSPort: 443
+                OriginProtocolPolicy: http-only
+            - DomainName: 1g20xxqqt7.execute-api.us-west-1.amazonaws.com/prod
+              Id: superstorewest
+              CustomOriginConfig:
+                HTTPPort: 80
+                HTTPSPort: 443
+                OriginProtocolPolicy: http-only
+          Enabled: 'true'
+          CustomErrorResponses:
+            - ErrorCode: 404
+              ResponseCode: 200
+              ResponsePagePath: /index.html
+          DefaultCacheBehavior:
+            AllowedMethods:
+              - DELETE
+              - GET
+              - HEAD
+              - OPTIONS
+              - PATCH
+              - POST
+              - PUT
+            ## The origin id defined above
+            TargetOriginId: superstoreeast
+            ## Defining if and how the QueryString and Cookies are forwarded to the origin which in this case is S3
+            ForwardedValues:
+              QueryString: 'true'
+              Cookies:
+                Forward: none
+          ViewerCertificate:
+            CloudFrontDefaultCertificate: 'true'
+
+# TODO: Add functions for API Gateway. For now just import the superstore-prod-swagger-apigateway.json
+# and point the lamdbdas to the ones created from the functions below.
+
+functions:
+  DynamoDBTableCreate:
+    handler: DynamoDBTableCreate.handler
+    runtime: python2.7
+    environment:
+      REGIONS: us-west-1,us-east-1
+      CUSTOMER_TABLE_NAME: customer_table
+  create_superstore_item:
+    handler: create_superstore_item.handler
+    runtime: python2.7
+    environment:
+      REGIONS: us-west-1,us-east-1
+      CUSTOMER_TABLE_NAME: customer_table
+  delete_superstore_item:
+    handler: delete_superstore_item.handler
+    runtime: python2.7
+    environment:
+      REGIONS: us-west-1,us-east-1
+      CUSTOMER_TABLE_NAME: customer_table
+  get_superstore_item:
+    handler: get_superstore_item.handler
+    runtime: python2.7
+    environment:
+      REGIONS: us-west-1,us-east-1
+      CUSTOMER_TABLE_NAME: customer_table
+  get_all_superstore_items:
+    handler: get_all_superstore_items.handler
+    runtime: python2.7
+    environment:
+      REGIONS: us-west-1,us-east-1
+      CUSTOMER_TABLE_NAME: customer_table

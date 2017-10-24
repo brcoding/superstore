@@ -18,7 +18,7 @@ SuperStore is a simple application that runs entirely on AWS offering a multi-re
 
 High Availability for the API Gateway is achieved through the use of Cloudfront using multiple origins. Since the API Gateway cannot be put behind Route53 this is the only way to load balance the API Gateway. Because of this each origin in the serverless.yml must be added for each region. 
 
-Follow this handy guide to install serverless: http://docs.aws.amazon.com/cli/latest/userguide/installing.html
+Follow this handy guide to install serverless: https://serverless.com/framework/docs/providers/aws/guide/installation/
 
 1. Log in to AWS
 2. Import superstore-prod-swagger-apigateway.json in to API gateway for each region
